@@ -1,6 +1,7 @@
 package com.oddhov.meteorfinder.data.local;
 
 import com.oddhov.meteorfinder.data.models.realm.DummyData;
+import com.oddhov.meteorfinder.data.models.realm.Meteor;
 
 import javax.inject.Inject;
 
@@ -21,7 +22,7 @@ public class LocalDataSourceImpl implements LocalDataSource {
     }
 
     @Override
-    public void saveData(DummyData dummyData) {
+    public void saveMeteor(Meteor meteor) {
 
     }
 

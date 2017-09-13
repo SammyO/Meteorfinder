@@ -1,14 +1,11 @@
 package com.oddhov.meteorfinder.data.network;
 
-import com.oddhov.meteorfinder.data.models.realm.DummyData;
-
-import io.reactivex.Observable;
-import io.reactivex.Single;
+import io.reactivex.Completable;
 
 /**
  * Created by sammy on 06/09/17.
  */
 
 public interface NetworkDataSource {
-    Observable<DummyData> getData();
+    Completable getData();
 }

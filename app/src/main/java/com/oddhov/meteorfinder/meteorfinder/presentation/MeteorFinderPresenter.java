@@ -30,10 +30,14 @@ public class MeteorFinderPresenter implements MeteorFinderContract.Presenter {
 
     @Override
     public void updateData(boolean isRefreshing) {
-        Log.e("Presenter", "getting data from server");
         mDataSources.getDataFromServer()
-                .subscribe(x -> Log.e("Presenter", "Api success"),
-                        e -> Log.e("Presenter", "Api error" + e.getMessage())
+                .subscribe(() -> {
+                        // Show success view
+                        Log.e("Presenter", "Api complete");
+                    }, e -> {
+                        // Show error view
+                        Log.e("Presenter", "Api error " + e.toString());
+                    }
                 );
     }
 

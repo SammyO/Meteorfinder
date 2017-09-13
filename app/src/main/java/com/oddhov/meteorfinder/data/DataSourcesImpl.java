@@ -4,7 +4,7 @@ import com.oddhov.meteorfinder.data.local.LocalDataSource;
 import com.oddhov.meteorfinder.data.models.realm.DummyData;
 import com.oddhov.meteorfinder.data.network.NetworkDataSource;
 
-import io.reactivex.Observable;
+import io.reactivex.Completable;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.schedulers.Schedulers;
 
@@ -27,7 +27,7 @@ public class DataSourcesImpl implements DataSources {
     }
 
     @Override
-    public Observable<DummyData> getDataFromServer() {
+    public Completable getDataFromServer() {
         return mNetworkDataSource.getData()
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread());

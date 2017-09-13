@@ -1,7 +1,11 @@
 package com.oddhov.meteorfinder.data;
 
 import com.oddhov.meteorfinder.data.models.realm.DummyData;
+import com.oddhov.meteorfinder.data.models.realm.Meteor;
 
+import java.util.List;
+
+import io.reactivex.Completable;
 import io.reactivex.Observable;
 import io.reactivex.Single;
 
@@ -12,7 +16,7 @@ import io.reactivex.Single;
 public interface DataSources {
     DummyData getStoredData();
 
-    Observable<DummyData> getDataFromServer();
+    Completable getDataFromServer();
 
     void storeData(DummyData dummyData);
 }
