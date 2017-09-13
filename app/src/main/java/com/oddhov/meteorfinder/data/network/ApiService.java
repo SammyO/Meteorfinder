@@ -11,7 +11,8 @@ import retrofit2.http.GET;
 
 public interface ApiService {
     int DEFAULT_TIMEOUT = 10;
-    String BASE_URL = "";
+    String BASE_URL = "https://data.nasa.gov/resource/y77d-th95.json";
+    String X_APP_TOKEN = "ToGfplYVyilyes6Dbx1CVmVR5";
 
     @GET("")
     Single<DummyData> getData();
