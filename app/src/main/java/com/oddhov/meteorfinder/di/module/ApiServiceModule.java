@@ -77,4 +77,8 @@ public class ApiServiceModule {
         interceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
         return interceptor;
     }
+
+    public static ApiService getApiService(Retrofit retrofit) {
+        return retrofit.create(ApiService.class);
+    }
 }

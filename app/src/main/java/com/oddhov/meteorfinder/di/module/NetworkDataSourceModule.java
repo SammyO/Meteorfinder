@@ -13,7 +13,7 @@ import dagger.Provides;
  * Created by sammy on 07/09/17.
  */
 
-@Module
+@Module(includes = {ApiServiceModule.class})
 public class NetworkDataSourceModule {
 
     @Singleton

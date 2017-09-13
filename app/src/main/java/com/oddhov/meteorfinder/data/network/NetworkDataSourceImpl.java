@@ -4,6 +4,7 @@ import com.oddhov.meteorfinder.data.models.realm.DummyData;
 
 import javax.inject.Inject;
 
+import io.reactivex.Observable;
 import io.reactivex.Single;
 
 /**
@@ -21,7 +22,11 @@ public class NetworkDataSourceImpl implements NetworkDataSource {
     }
 
     @Override
-    public Single<DummyData> getData() {
-        return mApiService.getData();
+    public Observable<DummyData> getData() {
+        return mApiService.getMeteors(
+                ApiService.X_APP_TOKEN,
+                "2011-01-01T00:00:00.000",
+                "Fell"
+        );
     }
 }

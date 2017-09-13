@@ -1,5 +1,7 @@
 package com.oddhov.meteorfinder.di.component;
 
+import com.oddhov.meteorfinder.MeteorFinderApp;
+import com.oddhov.meteorfinder.data.DataSources;
 import com.oddhov.meteorfinder.di.module.ApplicationModule;
 import com.oddhov.meteorfinder.di.module.DataSourcesModule;
 
@@ -14,4 +16,7 @@ import dagger.Component;
 @Singleton
 @Component(modules = {ApplicationModule.class, DataSourcesModule.class})
 public interface ApplicationComponent {
+    DataSources getDataSources();
+
+    void inject(MeteorFinderApp o);
 }

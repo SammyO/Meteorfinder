@@ -15,7 +15,7 @@ import io.realm.Realm;
  * Created by sammy on 07/09/17.
  */
 
-public class BoilerplateApp extends Application {
+public class MeteorFinderApp extends Application {
     private ApplicationComponent mApplicationComponent;
 
     @Override
