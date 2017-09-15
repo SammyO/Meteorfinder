@@ -19,6 +19,10 @@
             </intent-filter>
         </activity>
 
+        <activity
+            android:name=".meteor_detail.view.MeteorDetailActivity"
+            android:theme="@style/AppTheme.ActionBar" />
+
     </application>
 
 </manifest>

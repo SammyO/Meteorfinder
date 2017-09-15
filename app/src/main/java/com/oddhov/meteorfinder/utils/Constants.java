@@ -5,6 +5,7 @@ package com.oddhov.meteorfinder.utils;
  */
 
 public class Constants {
+    // API constants
     public static final String YEAR = "year";
     public static final String FALL = "fall";
     public static final String FELL = "Fell";
@@ -16,4 +17,7 @@ public class Constants {
     public static final String GREATER_OR_EQUALS = ">=";
     public static final String EQUALS = "=";
     public static final String TIMESTAMP_2011 = "2011-01-01T00:00:00.000";
+
+    // Intent constants
+    public static final String METEOR_ID = "meteor_id";
 }

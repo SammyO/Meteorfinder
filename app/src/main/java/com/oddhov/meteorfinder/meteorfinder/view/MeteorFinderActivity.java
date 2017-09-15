@@ -1,22 +1,21 @@
 package com.oddhov.meteorfinder.meteorfinder.view;
 
+import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.widget.ViewAnimator;
-import android.widget.ViewFlipper;
 
 import com.oddhov.meteorfinder.MeteorFinderApp;
 import com.oddhov.meteorfinder.R;
-import com.oddhov.meteorfinder.data.models.Meteor;
 import com.oddhov.meteorfinder.meteorfinder.DaggerMeteorFinderComponent;
 import com.oddhov.meteorfinder.meteorfinder.MeteorFinderContract;
 import com.oddhov.meteorfinder.meteorfinder.presentation.MeteorFinderModule;
 import com.oddhov.meteorfinder.meteorfinder.presentation.MeteorFinderPresenter;
-
-import java.util.List;
+import com.oddhov.meteorfinder.utils.ScreenTransition;
 
 import javax.inject.Inject;
 
@@ -27,7 +26,8 @@ import butterknife.ButterKnife;
  * Created by sammy on 13/09/17.
  */
 
-public class MeteorFinderActivity extends AppCompatActivity implements MeteorFinderContract.View, SwipeRefreshLayout.OnRefreshListener {
+public class MeteorFinderActivity extends AppCompatActivity implements MeteorFinderContract.View,
+        SwipeRefreshLayout.OnRefreshListener {
     //region Static Fields
     private static final int POSITION_LIST = 0;
     private static final int POSITION_LOADING = 1;
@@ -45,8 +45,6 @@ public class MeteorFinderActivity extends AppCompatActivity implements MeteorFin
     @BindView(R.id.recyclerView)
     RecyclerView mRecyclerView;
 
-    private MeteorAdapter mAdapter;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -60,7 +58,7 @@ public class MeteorFinderActivity extends AppCompatActivity implements MeteorFin
         setContentView(R.layout.activity_meteorfinder);
         ButterKnife.bind(this);
 
-        setupAdapterAndRecyclerView();
+        mSwipeRefreshLayout.setOnRefreshListener(this);
 
         mPresenter.subscribe();
         mPresenter.initialize();
@@ -79,9 +77,20 @@ public class MeteorFinderActivity extends AppCompatActivity implements MeteorFin
     }
 
     @Override
-    public void showContent(List<Meteor> cities) {
+    public Context getContext() {
+        return this;
+    }
+
+    @Override
+    public void setAdapter(MeteorAdapter adapter) {
+        mRecyclerView.setHasFixedSize(true);
+        mRecyclerView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
+        mRecyclerView.setAdapter(adapter);
+    }
+
+    @Override
+    public void showContent() {
         mViewAnimator.setDisplayedChild(POSITION_LIST);
-        mAdapter.setupData(cities);
         mSwipeRefreshLayout.setRefreshing(false);
     }
 
@@ -102,13 +111,9 @@ public class MeteorFinderActivity extends AppCompatActivity implements MeteorFin
         mSwipeRefreshLayout.setRefreshing(false);
     }
 
-    private void setupAdapterAndRecyclerView() {
-        mRecyclerView.setHasFixedSize(true);
-        mRecyclerView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
-
-        mAdapter = new MeteorAdapter();
-        mRecyclerView.setAdapter(mAdapter);
-
-        mSwipeRefreshLayout.setOnRefreshListener(this);
+    @Override
+    public void startActivityWithTransition(Intent intent, ScreenTransition screenTransition) {
+        startActivity(intent);
+        overridePendingTransition(screenTransition.getEnter(), screenTransition.getExit());
     }
 }

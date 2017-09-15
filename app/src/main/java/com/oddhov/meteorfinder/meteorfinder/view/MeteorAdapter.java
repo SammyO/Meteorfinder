@@ -7,6 +7,7 @@ import android.view.ViewGroup;
 
 import com.oddhov.meteorfinder.R;
 import com.oddhov.meteorfinder.data.models.Meteor;
+import com.oddhov.meteorfinder.meteor_detail.view.MeteorItemOnClickListener;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -17,16 +18,21 @@ import java.util.List;
 
 public class MeteorAdapter extends RecyclerView.Adapter<MeteorViewHolder> {
     private final List<Meteor> mMeteors;
+    private MeteorItemOnClickListener mMeteorItemOnClickListener;
 
     public MeteorAdapter() {
         this.mMeteors = new ArrayList<>();
     }
 
-    public void setupData(List<Meteor> meteors) {
-        mMeteors.clear();
-        mMeteors.addAll(meteors);
+    public void setData(List<Meteor> meteors) {
+        this.mMeteors.clear();
+        this.mMeteors.addAll(meteors);
 
         notifyDataSetChanged();
+    }
+
+    public void setMeteorItemOnClickListener(MeteorItemOnClickListener meteorItemOnClickListener) {
+        this.mMeteorItemOnClickListener = meteorItemOnClickListener;
     }
 
     @Override
@@ -39,7 +45,7 @@ public class MeteorAdapter extends RecyclerView.Adapter<MeteorViewHolder> {
 
     @Override
     public void onBindViewHolder(MeteorViewHolder holder, int position) {
-        holder.bind(mMeteors.get(position));
+        holder.bind(mMeteors.get(position), mMeteorItemOnClickListener);
     }
 
     @Override

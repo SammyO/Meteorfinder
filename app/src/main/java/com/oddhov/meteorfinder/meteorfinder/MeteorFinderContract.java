@@ -1,8 +1,11 @@
 package com.oddhov.meteorfinder.meteorfinder;
 
-import com.oddhov.meteorfinder.data.models.Meteor;
+import android.content.Context;
+import android.content.Intent;
 
-import java.util.List;
+import com.oddhov.meteorfinder.base.BasePresenter;
+import com.oddhov.meteorfinder.meteorfinder.view.MeteorAdapter;
+import com.oddhov.meteorfinder.utils.ScreenTransition;
 
 /**
  * Created by sammy on 13/09/17.
@@ -10,22 +13,22 @@ import java.util.List;
 
 public interface MeteorFinderContract {
     interface View {
+        Context getContext();
+
+        void setAdapter(MeteorAdapter adapter);
+
         void showLoading();
 
-        void showContent(List<Meteor> meteors);
+        void showContent();
 
         void showError();
 
         void showEmpty();
+
+        void startActivityWithTransition(Intent intent, ScreenTransition screenTransition);
     }
 
-    interface Presenter {
-        void subscribe();
-
-        void initialize();
-
-        void unSubscribe();
-
+    interface Presenter extends BasePresenter {
         void onRefresh();
     }
 }

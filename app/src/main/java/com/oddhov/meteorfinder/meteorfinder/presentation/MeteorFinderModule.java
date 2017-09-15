@@ -2,6 +2,7 @@ package com.oddhov.meteorfinder.meteorfinder.presentation;
 
 import com.oddhov.meteorfinder.di.annotation.ActivityScope;
 import com.oddhov.meteorfinder.meteorfinder.MeteorFinderContract;
+import com.oddhov.meteorfinder.meteorfinder.view.MeteorAdapter;
 import com.oddhov.meteorfinder.meteorfinder.view.MeteorFinderActivity;
 
 import dagger.Module;
@@ -23,5 +24,10 @@ public class MeteorFinderModule {
     @Provides
     MeteorFinderContract.View provideView() {
         return mView;
+    }
+
+    @Provides
+    MeteorAdapter provideMeteorAdapter() {
+        return new MeteorAdapter();
     }
 }

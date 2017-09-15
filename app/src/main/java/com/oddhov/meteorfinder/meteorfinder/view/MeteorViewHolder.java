@@ -6,6 +6,7 @@ import android.widget.TextView;
 
 import com.oddhov.meteorfinder.R;
 import com.oddhov.meteorfinder.data.models.Meteor;
+import com.oddhov.meteorfinder.meteor_detail.view.MeteorItemOnClickListener;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -26,7 +27,8 @@ public class MeteorViewHolder extends RecyclerView.ViewHolder {
         this.mItemView = itemView;
     }
 
-    void bind(Meteor meteor) {
+    void bind(Meteor meteor, MeteorItemOnClickListener onClickListener) {
         mMeteorName.setText(meteor.getName());
+        mItemView.setOnClickListener(view -> onClickListener.onItemClick(meteor.getId()));
     }
 }
