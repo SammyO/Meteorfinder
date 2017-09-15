@@ -6,6 +6,11 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 
+import com.google.android.gms.maps.CameraUpdateFactory;
+import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.MapView;
+import com.google.android.gms.maps.OnMapReadyCallback;
+import com.google.android.gms.maps.model.LatLng;
 import com.oddhov.meteorfinder.MeteorFinderApp;
 import com.oddhov.meteorfinder.R;
 import com.oddhov.meteorfinder.meteor_detail.DaggerMeteorDetailComponent;
@@ -22,9 +27,12 @@ import butterknife.ButterKnife;
  * Created by sammy on 13/09/17.
  */
 
-public class MeteorDetailActivity extends AppCompatActivity implements MeteorDetailContract.View {
+public class MeteorDetailActivity extends AppCompatActivity implements MeteorDetailContract.View, OnMapReadyCallback {
     @Inject
     MeteorDetailPresenter mPresenter;
+
+    private MapView mMapView;
+    private GoogleMap mMap;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,9 +49,10 @@ public class MeteorDetailActivity extends AppCompatActivity implements MeteorDet
 
         setupToolbar();
 
+        setupMap();
+
         mPresenter.subscribe();
         mPresenter.setIntent(getIntent());
-        mPresenter.initialize();
     }
 
     @Override
@@ -68,6 +77,15 @@ public class MeteorDetailActivity extends AppCompatActivity implements MeteorDet
     }
 
     @Override
+    public void onMapReady(GoogleMap googleMap) {
+        mMap = googleMap;
+
+        // This is called now instead of in onCreate, because only after the map is ready we
+        // can do operations on it.
+        mPresenter.initialize();
+    }
+
+    @Override
     public void setScreenTitle(String title) {
         setTitle(title);
     }
@@ -78,6 +96,11 @@ public class MeteorDetailActivity extends AppCompatActivity implements MeteorDet
         overridePendingTransition(screenTransition.getEnter(), screenTransition.getExit());
     }
 
+    @Override
+    public void moveCamera(LatLng latLng) {
+        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(latLng, 15));
+    }
+
     private void setupToolbar() {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -86,5 +109,10 @@ public class MeteorDetailActivity extends AppCompatActivity implements MeteorDet
         if (actionBar != null) {
             actionBar.setDisplayHomeAsUpEnabled(true);
         }
+    }
+
+    private void setupMap() {
+        mMapView = (MapView) findViewById(R.id.mapView);
+        mMapView.getMapAsync(this);
     }
 }

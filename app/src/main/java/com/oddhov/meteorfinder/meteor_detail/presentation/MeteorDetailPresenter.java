@@ -2,6 +2,7 @@ package com.oddhov.meteorfinder.meteor_detail.presentation;
 
 import android.content.Intent;
 
+import com.google.android.gms.maps.model.LatLng;
 import com.oddhov.meteorfinder.data.DataSources;
 import com.oddhov.meteorfinder.data.models.Meteor;
 import com.oddhov.meteorfinder.meteor_detail.MeteorDetailContract;
@@ -18,6 +19,7 @@ public class MeteorDetailPresenter implements MeteorDetailContract.Presenter {
     private DataSources mDataSources;
     private MeteorDetailContract.View mView;
     private Intent mIntent;
+    private Meteor mMeteor;
 
     @Inject
     public MeteorDetailPresenter(DataSources dataSources, MeteorDetailContract.View view) {
@@ -33,8 +35,10 @@ public class MeteorDetailPresenter implements MeteorDetailContract.Presenter {
     @Override
     public void initialize() {
         String meteorId = mIntent.getStringExtra(Constants.METEOR_ID);
-        Meteor meteor = mDataSources.getMeteorWithId(meteorId);
-        mView.setScreenTitle(meteor.getName());
+        this.mMeteor = mDataSources.getMeteorWithId(meteorId);
+        mView.setScreenTitle(mMeteor.getName());
+
+        setupMap();
     }
 
     @Override
@@ -50,5 +54,11 @@ public class MeteorDetailPresenter implements MeteorDetailContract.Presenter {
     @Override
     public void onBackPressed() {
         mView.closeActivityWithTransition(ScreenTransition.BACK_SLIDING_SLIDING);
+    }
+
+    private void setupMap() {
+        final LatLng HAMBURG = new LatLng(53.558, 9.927);
+
+        mView.moveCamera(HAMBURG);
     }
 }

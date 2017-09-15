@@ -19,9 +19,28 @@
 
     </android.support.design.widget.AppBarLayout>
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Meteor detail view"/>
 
+    <android.support.v7.widget.CardView
+        android:id="@+id/mapCard"
+        android:layout_width="match_parent"
+        android:layout_height="300dp">
+
+        <com.google.android.gms.maps.MapView
+            android:id="@+id/mapView"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent" />
+
+    </android.support.v7.widget.CardView>
+
+    <android.support.v7.widget.CardView
+        android:id="@+id/informationCard"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Meteor details"/>
+
+    </android.support.v7.widget.CardView>
 </android.support.design.widget.CoordinatorLayout>
