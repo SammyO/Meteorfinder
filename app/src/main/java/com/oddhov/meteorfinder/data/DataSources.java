@@ -13,7 +13,9 @@ import io.reactivex.Completable;
 public interface DataSources {
     boolean hasLocalData();
 
-    List<Meteor> getStoredData();
+    List<Meteor> getAllMeteors();
+
+    Meteor getMeteorWithId(String id);
 
     Completable getDataFromServer();
 

@@ -36,9 +36,14 @@ public class LocalDataSourceImpl implements LocalDataSource {
     }
 
     @Override
-    public List<Meteor> getData() {
+    public List<Meteor> getAllMeteors() {
         mRealm.refresh();
         RealmResults<Meteor> meteors = mRealm.where(Meteor.class).findAll();
         return mRealm.copyFromRealm(meteors);
+    }
+
+    @Override
+    public Meteor getMeteorWithId(String id) {
+        return mRealm.where(Meteor.class).equalTo("mId", id).findFirst();
     }
 }

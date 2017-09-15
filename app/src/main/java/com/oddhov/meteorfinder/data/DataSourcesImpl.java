@@ -29,8 +29,13 @@ public class DataSourcesImpl implements DataSources {
     }
 
     @Override
-    public List<Meteor> getStoredData() {
-        return mLocalDataSource.getData();
+    public List<Meteor> getAllMeteors() {
+        return mLocalDataSource.getAllMeteors();
+    }
+
+    @Override
+    public Meteor getMeteorWithId(String id) {
+        return mLocalDataSource.getMeteorWithId(id);
     }
 
     @Override

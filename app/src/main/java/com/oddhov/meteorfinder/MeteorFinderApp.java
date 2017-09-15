@@ -8,6 +8,7 @@ import com.oddhov.meteorfinder.di.module.ApplicationModule;
 import com.oddhov.meteorfinder.di.module.DataSourcesModule;
 import com.oddhov.meteorfinder.di.module.LocalDataSourceModule;
 import com.oddhov.meteorfinder.di.module.NetworkDataSourceModule;
+import com.squareup.leakcanary.LeakCanary;
 
 import io.realm.Realm;
 
@@ -21,8 +22,19 @@ public class MeteorFinderApp extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
+
         Realm.init(this);
+
+        if (BuildConfig.DEBUG) {
+            if (LeakCanary.isInAnalyzerProcess(this)) {
+                // This process is dedicated to LeakCanary for heap analysis.
+                return;
+            }
+            LeakCanary.install(this);
+        }
+
         initializeDependencies();
+
     }
 
     private void initializeDependencies() {

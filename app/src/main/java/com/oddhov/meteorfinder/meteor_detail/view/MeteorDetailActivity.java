@@ -42,6 +42,7 @@ public class MeteorDetailActivity extends AppCompatActivity implements MeteorDet
         setupToolbar();
 
         mPresenter.subscribe();
+        mPresenter.setIntent(getIntent());
         mPresenter.initialize();
     }
 
@@ -64,6 +65,11 @@ public class MeteorDetailActivity extends AppCompatActivity implements MeteorDet
                 return true;
         }
         return false;
+    }
+
+    @Override
+    public void setScreenTitle(String title) {
+        setTitle(title);
     }
 
     @Override

@@ -13,5 +13,7 @@ public interface LocalDataSource {
 
     void saveMeteor(Meteor meteor);
 
-    List<Meteor> getData();
+    List<Meteor> getAllMeteors();
+
+    Meteor getMeteorWithId(String id);
 }
