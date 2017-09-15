@@ -1,5 +1,6 @@
 package com.oddhov.meteorfinder.di.module;
 
+import com.google.gson.GsonBuilder;
 import com.oddhov.meteorfinder.BuildConfig;
 import com.oddhov.meteorfinder.data.network.ApiService;
 
@@ -37,8 +38,8 @@ public class ApiServiceModule {
                                      OkHttpClient okHttpClient) {
         Retrofit.Builder builder = new Retrofit.Builder();
         builder.baseUrl(ApiService.BASE_URL)
-                .addCallAdapterFactory(rxJava2CallAdapterFactory)
                 .addConverterFactory(gsonConverterFactory)
+                .addCallAdapterFactory(rxJava2CallAdapterFactory)
                 .client(okHttpClient);
         return builder.build();
     }
@@ -52,7 +53,9 @@ public class ApiServiceModule {
     @Singleton
     @Provides
     public GsonConverterFactory providesGsonConverterFactory() {
-        return GsonConverterFactory.create();
+        return GsonConverterFactory.create(
+                new GsonBuilder().create()
+        );
     }
 
     @Singleton
@@ -76,9 +79,5 @@ public class ApiServiceModule {
         HttpLoggingInterceptor interceptor = new HttpLoggingInterceptor();
         interceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
         return interceptor;
-    }
-
-    public static ApiService getApiService(Retrofit retrofit) {
-        return retrofit.create(ApiService.class);
     }
 }

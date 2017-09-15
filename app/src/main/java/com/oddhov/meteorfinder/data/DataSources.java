@@ -1,22 +1,21 @@
 package com.oddhov.meteorfinder.data;
 
-import com.oddhov.meteorfinder.data.models.realm.DummyData;
-import com.oddhov.meteorfinder.data.models.realm.Meteor;
+import com.oddhov.meteorfinder.data.models.Meteor;
 
 import java.util.List;
 
 import io.reactivex.Completable;
-import io.reactivex.Observable;
-import io.reactivex.Single;
 
 /**
  * Created by sammy on 06/09/17.
  */
 
 public interface DataSources {
-    DummyData getStoredData();
+    boolean hasLocalData();
+
+    List<Meteor> getStoredData();
 
     Completable getDataFromServer();
 
-    void storeData(DummyData dummyData);
+    void storeData(Meteor dummyData);
 }

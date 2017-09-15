@@ -1,13 +1,11 @@
 package com.oddhov.meteorfinder.data.network;
 
-import com.oddhov.meteorfinder.data.models.realm.DummyData;
-import com.oddhov.meteorfinder.data.models.realm.Meteor;
+import com.oddhov.meteorfinder.data.models.Meteor;
 import com.oddhov.meteorfinder.utils.Constants;
 
 import java.util.List;
 
 import io.reactivex.Observable;
-import io.reactivex.Single;
 import retrofit2.http.GET;
 import retrofit2.http.Header;
 import retrofit2.http.Query;

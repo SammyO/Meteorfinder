@@ -1,11 +1,13 @@
 package com.oddhov.meteorfinder.data.local;
 
-import com.oddhov.meteorfinder.data.models.realm.DummyData;
-import com.oddhov.meteorfinder.data.models.realm.Meteor;
+import com.oddhov.meteorfinder.data.models.Meteor;
+
+import java.util.List;
 
 import javax.inject.Inject;
 
 import io.realm.Realm;
+import io.realm.RealmResults;
 
 /**
  * Created by sammy on 06/09/17.
@@ -22,13 +24,21 @@ public class LocalDataSourceImpl implements LocalDataSource {
     }
 
     @Override
-    public void saveMeteor(Meteor meteor) {
-
+    public boolean hasLocalData() {
+        mRealm.refresh();
+        return !mRealm.where(Meteor.class).findAll().isEmpty();
     }
 
     @Override
-    public DummyData getData() {
-        return new DummyData();
+    public void saveMeteor(Meteor meteor) {
+        Realm realm = Realm.getDefaultInstance();
+        realm.executeTransaction(x -> realm.copyToRealmOrUpdate(meteor));
     }
 
+    @Override
+    public List<Meteor> getData() {
+        mRealm.refresh();
+        RealmResults<Meteor> meteors = mRealm.where(Meteor.class).findAll();
+        return mRealm.copyFromRealm(meteors);
+    }
 }

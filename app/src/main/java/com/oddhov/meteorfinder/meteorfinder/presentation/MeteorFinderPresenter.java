@@ -15,7 +15,6 @@ public class MeteorFinderPresenter implements MeteorFinderContract.Presenter {
     private DataSources mDataSources;
     private MeteorFinderContract.View mView;
 
-
     @Inject
     public MeteorFinderPresenter(DataSources dataSources, MeteorFinderContract.View view) {
         this.mDataSources = dataSources;
@@ -29,20 +28,42 @@ public class MeteorFinderPresenter implements MeteorFinderContract.Presenter {
     }
 
     @Override
-    public void updateData(boolean isRefreshing) {
+    public void initialize() {
+        if (mDataSources.hasLocalData()) {
+            mView.showContent(mDataSources.getStoredData());
+        } else {
+            mView.showLoading();
+        }
         mDataSources.getDataFromServer()
-                .subscribe(() -> {
-                        // Show success view
-                        Log.e("Presenter", "Api complete");
-                    }, e -> {
-                        // Show error view
-                        Log.e("Presenter", "Api error " + e.toString());
-                    }
+                .subscribe(this::handleGetDataSuccess,
+                        this::handleGetDataError
                 );
     }
 
     @Override
     public void unSubscribe() {
 
+    }
+
+    @Override
+    public void onRefresh() {
+        updateData();
+    }
+
+    private void updateData() {
+        mDataSources.getDataFromServer()
+                .subscribe(this::handleGetDataSuccess,
+                        this::handleGetDataError
+                );
+    }
+
+    private void handleGetDataSuccess() {
+        Log.e("Presenter", "stored data: " + mDataSources.getStoredData().size());
+        mView.showContent(mDataSources.getStoredData());
+    }
+
+    private void handleGetDataError(Throwable throwable) {
+        Log.e("Presenter", "Api error " + throwable.toString());
+        mView.showError();
     }
 }

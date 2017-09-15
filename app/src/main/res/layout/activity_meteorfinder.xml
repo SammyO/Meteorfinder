@@ -6,20 +6,19 @@
     android:layout_height="match_parent"
     tools:context=".meteorfinder.view.MeteorFinderActivity">
 
-    <ViewFlipper
-        android:id="@+id/animator"
+    <ViewAnimator
+        android:id="@+id/viewAnimator"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+        android:layout_height="match_parent">
 
-        <include layout="@layout/content_main" />
+        <include layout="@layout/content_main"/>
 
-        <include layout="@layout/content_loading" />
+        <include layout="@layout/content_loading"/>
 
-        <include layout="@layout/content_empty" />
+        <include layout="@layout/content_empty"/>
 
-        <include layout="@layout/content_error" />
+        <include layout="@layout/content_error"/>
 
-    </ViewFlipper>
+    </ViewAnimator>
 
 </android.support.design.widget.CoordinatorLayout>

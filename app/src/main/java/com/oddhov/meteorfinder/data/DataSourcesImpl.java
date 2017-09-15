@@ -1,8 +1,10 @@
 package com.oddhov.meteorfinder.data;
 
 import com.oddhov.meteorfinder.data.local.LocalDataSource;
-import com.oddhov.meteorfinder.data.models.realm.DummyData;
+import com.oddhov.meteorfinder.data.models.Meteor;
 import com.oddhov.meteorfinder.data.network.NetworkDataSource;
+
+import java.util.List;
 
 import io.reactivex.Completable;
 import io.reactivex.android.schedulers.AndroidSchedulers;
@@ -22,7 +24,12 @@ public class DataSourcesImpl implements DataSources {
     }
 
     @Override
-    public DummyData getStoredData() {
+    public boolean hasLocalData() {
+        return mLocalDataSource.hasLocalData();
+    }
+
+    @Override
+    public List<Meteor> getStoredData() {
         return mLocalDataSource.getData();
     }
 
@@ -34,7 +41,7 @@ public class DataSourcesImpl implements DataSources {
     }
 
     @Override
-    public void storeData(DummyData dummyData) {
+    public void storeData(Meteor dummyData) {
 
     }
 }

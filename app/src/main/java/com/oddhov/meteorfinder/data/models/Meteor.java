@@ -1,4 +1,4 @@
-package com.oddhov.meteorfinder.data.models.realm;
+package com.oddhov.meteorfinder.data.models;
 
 /**
  * Created by sammy on 13/09/17.
@@ -7,117 +7,110 @@ package com.oddhov.meteorfinder.data.models.realm;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class Meteor {
+import io.realm.RealmObject;
+import io.realm.annotations.PrimaryKey;
 
-    @SerializedName("fall")
-    @Expose
-    private String fall;
-    @SerializedName("geolocation")
-    @Expose
-    private GeoLocation geolocation;
+public class Meteor extends RealmObject {
+
+    @PrimaryKey
     @SerializedName("id")
     @Expose
-    private String id;
+    private String mId;
+    @SerializedName("fall")
+    @Expose
+    private String mFall;
     @SerializedName("mass")
     @Expose
-    private String mass;
+    private String mMass;
     @SerializedName("name")
     @Expose
-    private String name;
+    private String mName;
     @SerializedName("nametype")
     @Expose
-    private String nametype;
+    private String mNameType;
     @SerializedName("recclass")
     @Expose
-    private String recclass;
+    private String mClass;
     @SerializedName("reclat")
     @Expose
-    private String reclat;
+    private String mLatitude;
     @SerializedName("reclong")
     @Expose
-    private String reclong;
+    private String mLongitude;
     @SerializedName("year")
     @Expose
-    private String year;
+    private String mYear;
 
     public String getFall() {
-        return fall;
+        return mFall;
     }
 
     public void setFall(String fall) {
-        this.fall = fall;
-    }
-
-    public GeoLocation getGeolocation() {
-        return geolocation;
-    }
-
-    public void setGeolocation(GeoLocation geolocation) {
-        this.geolocation = geolocation;
+        this.mFall = fall;
     }
 
     public String getId() {
-        return id;
+        return mId;
     }
 
     public void setId(String id) {
-        this.id = id;
+        this.mId = id;
     }
 
     public String getMass() {
-        return mass;
+        return mMass;
     }
 
     public void setMass(String mass) {
-        this.mass = mass;
+        this.mMass = mass;
     }
 
     public String getName() {
-        return name;
+        return mName;
     }
 
     public void setName(String name) {
-        this.name = name;
+        this.mName = name;
     }
 
     public String getNametype() {
-        return nametype;
+        return mNameType;
     }
 
-    public void setNametype(String nametype) {
-        this.nametype = nametype;
+    public void setNametype(String nameType) {
+        this.mNameType = nameType;
     }
 
     public String getRecclass() {
-        return recclass;
+        return mClass;
     }
 
     public void setRecclass(String recclass) {
-        this.recclass = recclass;
+        this.mClass = recclass;
     }
 
     public String getReclat() {
-        return reclat;
+        return mLatitude;
     }
 
-    public void setReclat(String reclat) {
-        this.reclat = reclat;
+    public void setReclat(String latitude) {
+        this.mLatitude = latitude;
     }
 
-    public String getReclong() {
-        return reclong;
+    public String getmLongitude() {
+        return mLongitude;
     }
 
-    public void setReclong(String reclong) {
-        this.reclong = reclong;
+    public void setmLongitude(String longitude) {
+        this.mLongitude = longitude;
     }
 
-    public String getYear() {
-        return year;
+    public String getmYear() {
+        return mYear;
     }
 
-    public void setYear(String year) {
-        this.year = year;
+    public void setmYear(String year) {
+        this.mYear = year;
     }
 
 }
