@@ -41,13 +41,12 @@ public class MeteorFinderPresenter implements MeteorFinderContract.Presenter, Me
         mView.setAdapter(mMeteorAdapter);
 
         if (mDataSources.hasLocalData()) {
-            mMeteorAdapter.setData(mDataSources.getAllMeteors());
-            mView.showContent();
+            showContent();
         } else {
             mView.showLoading();
         }
         mDataSources.getDataFromServer()
-                .subscribe(this::handleGetDataSuccess,
+                .subscribe(this::showContent,
                         this::handleGetDataError
                 );
     }
@@ -73,13 +72,14 @@ public class MeteorFinderPresenter implements MeteorFinderContract.Presenter, Me
 
     private void updateData() {
         mDataSources.getDataFromServer()
-                .subscribe(this::handleGetDataSuccess,
+                .subscribe(this::showContent,
                         this::handleGetDataError
                 );
     }
 
-    private void handleGetDataSuccess() {
+    private void showContent() {
         Log.e("Presenter", "stored data: " + mDataSources.getAllMeteors().size());
+        mMeteorAdapter.setData(mDataSources.getAllMeteors());
         mView.showContent();
     }
 

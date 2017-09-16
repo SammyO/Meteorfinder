@@ -17,6 +17,16 @@ public interface MeteorDetailContract {
         void closeActivityWithTransition(ScreenTransition screenTransition);
 
         void moveCamera(LatLng latLng);
+
+        void dropMarker(LatLng latLng);
+
+        void setName(String name);
+
+        void setYear(String year);
+
+        void setMass(Integer format, String mass);
+
+        void setClassType(Integer format, String classType);
     }
 
     interface Presenter extends BasePresenter {

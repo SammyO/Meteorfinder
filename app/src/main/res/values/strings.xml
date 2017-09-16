@@ -4,4 +4,7 @@
     <string name="word.loading">Loading…</string>
     <string name="screen.empty.description">No meteors were found :(\nYay earth!</string>
     <string name="screen.error.description">There was a problem loading meteors. Apocalypse pending.</string>
+
+    <string name="meteor_mass">Meteor mass: %s</string>
+    <string name="meteor_class">Meteor class: %s</string>
 </resources>

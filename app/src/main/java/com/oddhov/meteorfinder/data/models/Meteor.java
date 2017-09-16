@@ -30,13 +30,13 @@ public class Meteor extends RealmObject {
     private String mNameType;
     @SerializedName("recclass")
     @Expose
-    private String mClass;
+    private String mClassType;
     @SerializedName("reclat")
     @Expose
-    private String mLatitude;
+    private double mLatitude;
     @SerializedName("reclong")
     @Expose
-    private String mLongitude;
+    private double mLongitude;
     @SerializedName("year")
     @Expose
     private String mYear;
@@ -81,35 +81,35 @@ public class Meteor extends RealmObject {
         this.mNameType = nameType;
     }
 
-    public String getRecclass() {
-        return mClass;
+    public String getClassType() {
+        return mClassType;
     }
 
-    public void setRecclass(String recclass) {
-        this.mClass = recclass;
+    public void setClassType(String classType) {
+        this.mClassType = classType;
     }
 
-    public String getReclat() {
+    public double getLatitude() {
         return mLatitude;
     }
 
-    public void setReclat(String latitude) {
+    public void setLatitude(double latitude) {
         this.mLatitude = latitude;
     }
 
-    public String getmLongitude() {
+    public double getLongitude() {
         return mLongitude;
     }
 
-    public void setmLongitude(String longitude) {
+    public void setLongitude(double longitude) {
         this.mLongitude = longitude;
     }
 
-    public String getmYear() {
+    public String getYear() {
         return mYear;
     }
 
-    public void setmYear(String year) {
+    public void setYear(String year) {
         this.mYear = year;
     }
 
