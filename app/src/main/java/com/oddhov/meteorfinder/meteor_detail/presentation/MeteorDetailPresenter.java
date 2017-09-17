@@ -8,7 +8,10 @@ import com.oddhov.meteorfinder.data.DataSources;
 import com.oddhov.meteorfinder.data.models.Meteor;
 import com.oddhov.meteorfinder.meteor_detail.MeteorDetailContract;
 import com.oddhov.meteorfinder.utils.Constants;
+import com.oddhov.meteorfinder.utils.DateUtils;
 import com.oddhov.meteorfinder.utils.ScreenTransition;
+
+import java.util.Date;
 
 import javax.inject.Inject;
 
@@ -21,6 +24,9 @@ public class MeteorDetailPresenter implements MeteorDetailContract.Presenter {
     private MeteorDetailContract.View mView;
     private Intent mIntent;
     private Meteor mMeteor;
+
+    @Inject
+    DateUtils mDateUtils;
 
     @Inject
     public MeteorDetailPresenter(DataSources dataSources, MeteorDetailContract.View view) {
@@ -67,8 +73,10 @@ public class MeteorDetailPresenter implements MeteorDetailContract.Presenter {
     }
 
     private void setupUI() {
+        Date date = mDateUtils.getYearFromDateString(mMeteor.getYear());
+        String year = mDateUtils.getYearFromDate(date);
         mView.setName(mMeteor.getName());
-        mView.setYear(mMeteor.getYear());
+        mView.setYear(year);
         mView.setMass(R.string.meteor_mass, mMeteor.getMass());
         mView.setClassType(R.string.meteor_class, mMeteor.getClassType());
     }

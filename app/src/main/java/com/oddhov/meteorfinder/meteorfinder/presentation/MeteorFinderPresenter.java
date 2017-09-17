@@ -9,6 +9,7 @@ import com.oddhov.meteorfinder.meteor_detail.view.MeteorItemOnClickListener;
 import com.oddhov.meteorfinder.meteorfinder.MeteorFinderContract;
 import com.oddhov.meteorfinder.meteorfinder.view.MeteorAdapter;
 import com.oddhov.meteorfinder.utils.Constants;
+import com.oddhov.meteorfinder.utils.DateUtils;
 import com.oddhov.meteorfinder.utils.ScreenTransition;
 
 import javax.inject.Inject;
@@ -21,6 +22,9 @@ public class MeteorFinderPresenter implements MeteorFinderContract.Presenter, Me
     private DataSources mDataSources;
     private MeteorFinderContract.View mView;
     private MeteorAdapter mMeteorAdapter;
+
+    @Inject
+    DateUtils mDateUtils;
 
     @Inject
     public MeteorFinderPresenter(DataSources dataSources, MeteorFinderContract.View view,
@@ -49,6 +53,8 @@ public class MeteorFinderPresenter implements MeteorFinderContract.Presenter, Me
                 .subscribe(this::showContent,
                         this::handleGetDataError
                 );
+
+        Log.e("Test", "mDateUtils: " + mDateUtils.getYearFromDateString("2012-01-01T00:00:00.000"));
     }
 
     @Override

@@ -25,9 +25,4 @@ public class MeteorFinderModule {
     MeteorFinderContract.View provideView() {
         return mView;
     }
-
-    @Provides
-    MeteorAdapter provideMeteorAdapter() {
-        return new MeteorAdapter();
-    }
 }

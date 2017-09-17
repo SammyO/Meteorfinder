@@ -14,7 +14,7 @@ import dagger.Component;
 @ActivityScope
 @Component(dependencies = ApplicationComponent.class,
         modules = {
-                MeteorDetailModule.class
+                MeteorDetailModule.class,
         })
 public interface MeteorDetailComponent {
     void inject(MeteorDetailActivity activity);

@@ -8,6 +8,7 @@ import com.oddhov.meteorfinder.di.module.ApplicationModule;
 import com.oddhov.meteorfinder.di.module.DataSourcesModule;
 import com.oddhov.meteorfinder.di.module.LocalDataSourceModule;
 import com.oddhov.meteorfinder.di.module.NetworkDataSourceModule;
+import com.oddhov.meteorfinder.utils.UtilsModule;
 import com.squareup.leakcanary.LeakCanary;
 
 import io.realm.Realm;
@@ -42,6 +43,7 @@ public class MeteorFinderApp extends Application {
                 .applicationModule(new ApplicationModule(this))
                 .dataSourcesModule(new DataSourcesModule())
                 .networkDataSourceModule(new NetworkDataSourceModule())
+                .utilsModule(new UtilsModule())
                 .localDataSourceModule(new LocalDataSourceModule())
                 .build();
     }
