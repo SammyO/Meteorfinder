@@ -41,6 +41,23 @@ public class Meteor extends RealmObject {
     @Expose
     private String mYear;
 
+    public Meteor() {
+
+    }
+
+    public Meteor(String id, String fall, String mass, String name, String nameType, String classType,
+                  double latitude, double longitude, String year) {
+        this.mId = id;
+        this.mFall = fall;
+        this.mMass = mass;
+        this.mName = name;
+        this.mNameType = nameType;
+        this.mClassType = classType;
+        this.mLatitude = latitude;
+        this.mLongitude = longitude;
+        this.mYear = year;
+    }
+
     public String getFall() {
         return mFall;
     }
