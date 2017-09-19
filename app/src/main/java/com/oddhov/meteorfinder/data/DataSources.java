@@ -19,5 +19,4 @@ public interface DataSources {
 
     Completable getDataFromServer();
 
-    void storeData(Meteor dummyData);
 }

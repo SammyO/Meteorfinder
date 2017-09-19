@@ -44,9 +44,4 @@ public class DataSourcesImpl implements DataSources {
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread());
     }
-
-    @Override
-    public void storeData(Meteor dummyData) {
-
-    }
 }
