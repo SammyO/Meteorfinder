@@ -9,6 +9,7 @@ import com.oddhov.meteorfinder.data.models.Meteor;
 import com.oddhov.meteorfinder.meteor_detail.MeteorDetailContract;
 import com.oddhov.meteorfinder.utils.Constants;
 import com.oddhov.meteorfinder.utils.DateUtils;
+import com.oddhov.meteorfinder.utils.LocationUtils;
 import com.oddhov.meteorfinder.utils.ScreenTransition;
 
 import java.util.Date;
@@ -25,16 +26,14 @@ public class MeteorDetailPresenter implements MeteorDetailContract.Presenter<Met
     private Intent mIntent;
     private Meteor mMeteor;
     private DateUtils mDateUtils;
+    private LocationUtils mLocationUtils;
 
     @Inject
-    public MeteorDetailPresenter(DataSources dataSources, DateUtils databaseUtils) {
-        this.mDataSources = dataSources;
-        this.mDateUtils = databaseUtils;
-    }
-
-    @Override
-    public void subscribe(MeteorDetailContract.View view) {
+    public MeteorDetailPresenter(MeteorDetailContract.View view, DataSources dataSources, DateUtils dateUtils, LocationUtils locationUtils) {
         this.mView = view;
+        this.mDataSources = dataSources;
+        this.mDateUtils = dateUtils;
+        this.mLocationUtils = locationUtils;
     }
 
     @Override
@@ -64,7 +63,10 @@ public class MeteorDetailPresenter implements MeteorDetailContract.Presenter<Met
     }
 
     private void setupMap() {
-        final LatLng meteorPosition = new LatLng(mMeteor.getLatitude(), mMeteor.getLongitude());
+        final LatLng meteorPosition = new LatLng(
+                mLocationUtils.getLatitudeInDegreesFromLatitude(mMeteor.getLatitude()),
+                mLocationUtils.getLongitudeInDegreesFromLongitude(mMeteor.getLongitude())
+        );
 
         mView.dropMarker(meteorPosition);
         mView.moveCamera(meteorPosition);

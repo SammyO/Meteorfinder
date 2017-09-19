@@ -5,8 +5,6 @@ package com.oddhov.meteorfinder.base;
  */
 
 public interface BasePresenter<T extends BaseView>{
-    void subscribe(T view);
-
     void initialize();
 
     void unSubscribe();

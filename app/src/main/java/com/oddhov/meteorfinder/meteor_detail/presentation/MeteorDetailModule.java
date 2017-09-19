@@ -1,8 +1,11 @@
 package com.oddhov.meteorfinder.meteor_detail.presentation;
 
 import com.oddhov.meteorfinder.di.annotation.ActivityScope;
+import com.oddhov.meteorfinder.meteor_detail.MeteorDetailContract;
+import com.oddhov.meteorfinder.meteor_detail.view.MeteorDetailActivity;
 
 import dagger.Module;
+import dagger.Provides;
 
 /**
  * Created by sammy on 13/09/17.
@@ -11,6 +14,14 @@ import dagger.Module;
 @ActivityScope
 @Module
 public class MeteorDetailModule {
-    public MeteorDetailModule() {
+    private final MeteorDetailActivity mView;
+
+    public MeteorDetailModule(MeteorDetailActivity view) {
+        this.mView = view;
+    }
+
+    @Provides
+    MeteorDetailContract.View provideView() {
+        return mView;
     }
 }

@@ -24,4 +24,9 @@ public class UtilsModule {
     DateUtils provideDateUtils() {
         return new DateUtils();
     }
+
+    @Provides
+    LocationUtils provideLocationUtils() {
+        return new LocationUtils();
+    }
 }

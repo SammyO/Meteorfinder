@@ -1,7 +1,6 @@
 package com.oddhov.meteorfinder.meteorfinder.presentation;
 
 import android.content.Intent;
-import android.util.Log;
 
 import com.oddhov.meteorfinder.data.DataSources;
 import com.oddhov.meteorfinder.meteor_detail.view.MeteorDetailActivity;
@@ -9,7 +8,6 @@ import com.oddhov.meteorfinder.meteor_detail.view.MeteorItemOnClickListener;
 import com.oddhov.meteorfinder.meteorfinder.MeteorFinderContract;
 import com.oddhov.meteorfinder.meteorfinder.view.MeteorAdapter;
 import com.oddhov.meteorfinder.utils.Constants;
-import com.oddhov.meteorfinder.utils.DateUtils;
 import com.oddhov.meteorfinder.utils.ScreenTransition;
 
 import javax.inject.Inject;
@@ -25,18 +23,12 @@ public class MeteorFinderPresenter implements MeteorFinderContract.Presenter<Met
     private DataSources mDataSources;
     private MeteorFinderContract.View mView;
     private MeteorAdapter mMeteorAdapter;
-    private DateUtils mDateUtils;
 
     @Inject
-    public MeteorFinderPresenter(DataSources dataSources, MeteorAdapter meteorAdapter, DateUtils dateUtils) {
+    public MeteorFinderPresenter(MeteorFinderContract.View view, DataSources dataSources, MeteorAdapter meteorAdapter) {
+        this.mView = view;
         this.mDataSources = dataSources;
         this.mMeteorAdapter = meteorAdapter;
-        this.mDateUtils = dateUtils;
-    }
-
-    @Override
-    public void subscribe(MeteorFinderContract.View view) {
-        this.mView = view;
     }
 
     @Override
@@ -49,11 +41,7 @@ public class MeteorFinderPresenter implements MeteorFinderContract.Presenter<Met
         } else {
             mView.showLoading();
         }
-
-        mSubscriptions.add(mDataSources.getDataFromServer()
-                .subscribe(this::showContent,
-                        this::handleGetDataError
-                ));
+        updateData();
     }
 
     @Override
@@ -78,21 +66,19 @@ public class MeteorFinderPresenter implements MeteorFinderContract.Presenter<Met
     }
 
 
-    private void updateData() {
-        mSubscriptions.add(mDataSources.getDataFromServer()
+    protected void updateData() {
+        mDataSources.getDataFromServer()
                 .subscribe(this::showContent,
-                        this::handleGetDataError
-                ));
+                        e -> handleGetDataError()
+                );
     }
 
     private void showContent() {
-        Log.e("Presenter", "stored data: " + mDataSources.getAllMeteors().size());
         mMeteorAdapter.setData(mDataSources.getAllMeteors());
         mView.showContent();
     }
 
-    private void handleGetDataError(Throwable throwable) {
-        Log.e("Presenter", "Api error " + throwable.toString());
+    private void handleGetDataError() {
         mView.showError();
     }
 }

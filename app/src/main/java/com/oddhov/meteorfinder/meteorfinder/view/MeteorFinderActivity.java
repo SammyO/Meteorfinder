@@ -51,7 +51,7 @@ public class MeteorFinderActivity extends AppCompatActivity implements MeteorFin
 
         DaggerMeteorFinderComponent.builder()
                 .applicationComponent(((MeteorFinderApp) getApplication()).getApplicationComponent())
-                .meteorFinderModule(new MeteorFinderModule())
+                .meteorFinderModule(new MeteorFinderModule(this))
                 .build()
                 .inject(this);
 
@@ -60,7 +60,6 @@ public class MeteorFinderActivity extends AppCompatActivity implements MeteorFin
 
         mSwipeRefreshLayout.setOnRefreshListener(this);
 
-        mPresenter.subscribe(this);
         mPresenter.initialize();
     }
 

@@ -1,7 +1,5 @@
 package com.oddhov.meteorfinder.data.network;
 
-import android.util.Log;
-
 import com.oddhov.meteorfinder.data.local.LocalDataSource;
 import com.oddhov.meteorfinder.utils.Constants;
 import com.oddhov.meteorfinder.utils.QueryUtils;
@@ -15,10 +13,8 @@ import io.reactivex.Completable;
  */
 
 public class NetworkDataSourceImpl implements NetworkDataSource {
-    //region Fields
     private ApiService mApiService;
     private LocalDataSource mLocalDataSource;
-    //endregion
 
     @Inject
     public NetworkDataSourceImpl(ApiService apiService, LocalDataSource localDataSource) {

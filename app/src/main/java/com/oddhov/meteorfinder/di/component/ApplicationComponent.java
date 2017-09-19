@@ -5,6 +5,7 @@ import com.oddhov.meteorfinder.data.DataSources;
 import com.oddhov.meteorfinder.di.module.ApplicationModule;
 import com.oddhov.meteorfinder.di.module.DataSourcesModule;
 import com.oddhov.meteorfinder.utils.DateUtils;
+import com.oddhov.meteorfinder.utils.LocationUtils;
 import com.oddhov.meteorfinder.utils.QueryUtils;
 import com.oddhov.meteorfinder.utils.UtilsModule;
 
@@ -24,6 +25,8 @@ public interface ApplicationComponent {
     DateUtils getDateUtils();
 
     QueryUtils getQueryUtils();
+
+    LocationUtils getLocationUtils();
 
     void inject(MeteorFinderApp o);
 }
