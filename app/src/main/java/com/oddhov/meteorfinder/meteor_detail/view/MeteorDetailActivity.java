@@ -53,7 +53,7 @@ public class MeteorDetailActivity extends AppCompatActivity implements MeteorDet
 
         DaggerMeteorDetailComponent.builder()
                 .applicationComponent(((MeteorFinderApp) getApplication()).getApplicationComponent())
-                .meteorDetailModule(new MeteorDetailModule(this))
+                .meteorDetailModule(new MeteorDetailModule())
                 .build()
                 .inject(this);
 
@@ -64,7 +64,7 @@ public class MeteorDetailActivity extends AppCompatActivity implements MeteorDet
 
         setupMap(savedInstanceState);
 
-        mPresenter.subscribe();
+        mPresenter.subscribe(this);
         mPresenter.setIntent(getIntent());
     }
 

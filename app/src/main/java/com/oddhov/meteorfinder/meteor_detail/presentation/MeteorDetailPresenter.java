@@ -19,7 +19,7 @@ import javax.inject.Inject;
  * Created by sammy on 13/09/17.
  */
 
-public class MeteorDetailPresenter implements MeteorDetailContract.Presenter {
+public class MeteorDetailPresenter implements MeteorDetailContract.Presenter<MeteorDetailContract.View> {
     private DataSources mDataSources;
     private MeteorDetailContract.View mView;
     private Intent mIntent;
@@ -29,14 +29,13 @@ public class MeteorDetailPresenter implements MeteorDetailContract.Presenter {
     DateUtils mDateUtils;
 
     @Inject
-    public MeteorDetailPresenter(DataSources dataSources, MeteorDetailContract.View view) {
+    public MeteorDetailPresenter(DataSources dataSources) {
         this.mDataSources = dataSources;
-        this.mView = view;
     }
 
     @Override
-    public void subscribe() {
-
+    public void subscribe(MeteorDetailContract.View view) {
+        this.mView = view;
     }
 
     @Override
@@ -52,7 +51,7 @@ public class MeteorDetailPresenter implements MeteorDetailContract.Presenter {
 
     @Override
     public void unSubscribe() {
-
+        this.mView = null;
     }
 
     @Override

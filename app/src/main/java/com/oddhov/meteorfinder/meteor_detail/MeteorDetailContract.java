@@ -4,6 +4,7 @@ import android.content.Intent;
 
 import com.google.android.gms.maps.model.LatLng;
 import com.oddhov.meteorfinder.base.BasePresenter;
+import com.oddhov.meteorfinder.base.BaseView;
 import com.oddhov.meteorfinder.utils.ScreenTransition;
 
 /**
@@ -11,7 +12,7 @@ import com.oddhov.meteorfinder.utils.ScreenTransition;
  */
 
 public interface MeteorDetailContract {
-    interface View {
+    interface View extends BaseView {
         void setScreenTitle(String title);
 
         void closeActivityWithTransition(ScreenTransition screenTransition);
@@ -29,7 +30,7 @@ public interface MeteorDetailContract {
         void setClassType(Integer format, String classType);
     }
 
-    interface Presenter extends BasePresenter {
+    interface Presenter<T extends BaseView> extends BasePresenter<T> {
         void setIntent(Intent intent);
 
         void onBackPressed();

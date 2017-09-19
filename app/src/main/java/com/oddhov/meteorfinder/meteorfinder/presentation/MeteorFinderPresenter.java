@@ -14,11 +14,14 @@ import com.oddhov.meteorfinder.utils.ScreenTransition;
 
 import javax.inject.Inject;
 
+import io.reactivex.disposables.CompositeDisposable;
+
 /**
  * Created by sammy on 13/09/17.
  */
 
-public class MeteorFinderPresenter implements MeteorFinderContract.Presenter, MeteorItemOnClickListener {
+public class MeteorFinderPresenter implements MeteorFinderContract.Presenter<MeteorFinderContract.View>, MeteorItemOnClickListener {
+    private CompositeDisposable mSubscriptions = new CompositeDisposable();
     private DataSources mDataSources;
     private MeteorFinderContract.View mView;
     private MeteorAdapter mMeteorAdapter;
@@ -27,16 +30,14 @@ public class MeteorFinderPresenter implements MeteorFinderContract.Presenter, Me
     DateUtils mDateUtils;
 
     @Inject
-    public MeteorFinderPresenter(DataSources dataSources, MeteorFinderContract.View view,
-                                 MeteorAdapter meteorAdapter) {
+    public MeteorFinderPresenter(DataSources dataSources, MeteorAdapter meteorAdapter) {
         this.mDataSources = dataSources;
-        this.mView = view;
         this.mMeteorAdapter = meteorAdapter;
     }
 
     @Override
-    public void subscribe() {
-
+    public void subscribe(MeteorFinderContract.View view) {
+        this.mView = view;
     }
 
     @Override
@@ -49,17 +50,19 @@ public class MeteorFinderPresenter implements MeteorFinderContract.Presenter, Me
         } else {
             mView.showLoading();
         }
-        mDataSources.getDataFromServer()
+
+        mSubscriptions.add(mDataSources.getDataFromServer()
                 .subscribe(this::showContent,
                         this::handleGetDataError
-                );
-
-        Log.e("Test", "mDateUtils: " + mDateUtils.getYearFromDateString("2012-01-01T00:00:00.000"));
+                ));
     }
 
     @Override
     public void unSubscribe() {
-
+        if (mSubscriptions != null && !mSubscriptions.isDisposed()) {
+            mSubscriptions.dispose();
+        }
+        this.mView = null;
     }
 
     @Override
@@ -77,10 +80,10 @@ public class MeteorFinderPresenter implements MeteorFinderContract.Presenter, Me
 
 
     private void updateData() {
-        mDataSources.getDataFromServer()
+        mSubscriptions.add(mDataSources.getDataFromServer()
                 .subscribe(this::showContent,
                         this::handleGetDataError
-                );
+                ));
     }
 
     private void showContent() {

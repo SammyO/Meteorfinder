@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 
 import com.oddhov.meteorfinder.base.BasePresenter;
+import com.oddhov.meteorfinder.base.BaseView;
 import com.oddhov.meteorfinder.meteorfinder.view.MeteorAdapter;
 import com.oddhov.meteorfinder.utils.ScreenTransition;
 
@@ -12,7 +13,7 @@ import com.oddhov.meteorfinder.utils.ScreenTransition;
  */
 
 public interface MeteorFinderContract {
-    interface View {
+    interface View extends BaseView {
         Context getContext();
 
         void setAdapter(MeteorAdapter adapter);
@@ -28,7 +29,7 @@ public interface MeteorFinderContract {
         void startActivityWithTransition(Intent intent, ScreenTransition screenTransition);
     }
 
-    interface Presenter extends BasePresenter {
+    interface Presenter<T extends BaseView> extends BasePresenter<T> {
         void onRefresh();
     }
 }
