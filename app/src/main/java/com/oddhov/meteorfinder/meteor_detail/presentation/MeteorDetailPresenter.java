@@ -24,13 +24,12 @@ public class MeteorDetailPresenter implements MeteorDetailContract.Presenter<Met
     private MeteorDetailContract.View mView;
     private Intent mIntent;
     private Meteor mMeteor;
+    private DateUtils mDateUtils;
 
     @Inject
-    DateUtils mDateUtils;
-
-    @Inject
-    public MeteorDetailPresenter(DataSources dataSources) {
+    public MeteorDetailPresenter(DataSources dataSources, DateUtils databaseUtils) {
         this.mDataSources = dataSources;
+        this.mDateUtils = databaseUtils;
     }
 
     @Override

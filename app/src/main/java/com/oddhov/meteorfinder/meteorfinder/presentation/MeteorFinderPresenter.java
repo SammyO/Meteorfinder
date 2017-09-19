@@ -25,14 +25,13 @@ public class MeteorFinderPresenter implements MeteorFinderContract.Presenter<Met
     private DataSources mDataSources;
     private MeteorFinderContract.View mView;
     private MeteorAdapter mMeteorAdapter;
+    private DateUtils mDateUtils;
 
     @Inject
-    DateUtils mDateUtils;
-
-    @Inject
-    public MeteorFinderPresenter(DataSources dataSources, MeteorAdapter meteorAdapter) {
+    public MeteorFinderPresenter(DataSources dataSources, MeteorAdapter meteorAdapter, DateUtils dateUtils) {
         this.mDataSources = dataSources;
         this.mMeteorAdapter = meteorAdapter;
+        this.mDateUtils = dateUtils;
     }
 
     @Override
