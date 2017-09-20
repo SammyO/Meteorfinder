@@ -28,11 +28,15 @@ public interface MeteorDetailContract {
         void setMass(Integer format, String mass);
 
         void setClassType(Integer format, String classType);
+
+        void startActivityForIntent(Intent intent);
     }
 
     interface Presenter<T extends BaseView> extends BasePresenter<T> {
         void setIntent(Intent intent);
 
         void onBackPressed();
+
+        void onHyperlinkClicked();
     }
 }

@@ -20,4 +20,7 @@ public class Constants {
 
     // Intent constants
     public static final String METEOR_ID = "meteor_id";
+
+    // Hyperlinks
+    public static final String METEOR_CLASSIFICATION = "https://en.wikipedia.org/wiki/Meteorite_classification";
 }

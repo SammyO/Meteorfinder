@@ -8,4 +8,8 @@
 
     <string name="meteor_mass">Meteor mass: %s</string>
     <string name="meteor_class">Meteor class: %s</string>
+
+    <string name="classification_hyperlink">(Read about it online)</string>
+
+
 </resources>

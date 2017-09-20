@@ -1,5 +1,6 @@
 package com.oddhov.meteorfinder.ui.meteor_detail.view;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
@@ -26,6 +27,7 @@ import javax.inject.Inject;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 /**
  * Created by sammy on 13/09/17.
@@ -138,6 +140,16 @@ public class MeteorDetailActivity extends AppCompatActivity implements MeteorDet
     @Override
     public void setClassType(Integer format, String classType) {
         mMeteorClass.setText(getString(format, classType));
+    }
+
+    @Override
+    public void startActivityForIntent(Intent intent) {
+        startActivity(intent);
+    }
+
+    @OnClick(R.id.hyperlink)
+    public void onHyperlinkClicked() {
+        mPresenter.onHyperlinkClicked();
     }
 
     private void setupToolbar() {

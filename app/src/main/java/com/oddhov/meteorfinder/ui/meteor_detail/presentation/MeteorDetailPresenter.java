@@ -1,6 +1,7 @@
 package com.oddhov.meteorfinder.ui.meteor_detail.presentation;
 
 import android.content.Intent;
+import android.net.Uri;
 
 import com.google.android.gms.maps.model.LatLng;
 import com.oddhov.meteorfinder.R;
@@ -60,6 +61,13 @@ public class MeteorDetailPresenter implements MeteorDetailContract.Presenter<Met
     @Override
     public void onBackPressed() {
         mView.closeActivityWithTransition(ScreenTransition.BACK_SLIDING_SLIDING);
+    }
+
+    @Override
+    public void onHyperlinkClicked() {
+        Intent intent = new Intent(Intent.ACTION_VIEW);
+        intent.setData(Uri.parse(Constants.METEOR_CLASSIFICATION));
+        mView.startActivityForIntent(intent);
     }
 
     private void setupMap() {

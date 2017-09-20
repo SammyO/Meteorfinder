@@ -23,6 +23,7 @@ import org.mockito.MockitoAnnotations;
 import java.util.Date;
 
 import static junit.framework.Assert.assertEquals;
+import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.doReturn;
 import static org.mockito.Mockito.verify;
 
@@ -46,6 +47,8 @@ public class MeteorDetailPresenterTest extends BaseTestCase {
 
     @Captor
     ArgumentCaptor<LatLng> mLatLang;
+    @Captor
+    ArgumentCaptor<Intent> mIntentCaptor;
 
     /**
      * Tests are named according to "action" - "given" - "should".
@@ -117,5 +120,17 @@ public class MeteorDetailPresenterTest extends BaseTestCase {
 
         // SHOULD
         verify(mView).closeActivityWithTransition(ScreenTransition.BACK_SLIDING_SLIDING);
+    }
+
+    @Test
+    public void onHyperlinkClickedShouldStartActivity() {
+        // GIVEN
+        setFieldValueThroughReflection(mPresenter, "mView", mView);
+
+        // ACTION
+        mPresenter.onHyperlinkClicked();
+
+        // SHOULD
+        verify(mView).startActivityForIntent(any(Intent.class));
     }
 }
