@@ -2,6 +2,7 @@
     <string name="app_name">Meteorfinder</string>
 
     <string name="word.loading">Loading…</string>
+    <string name="toast.update_data.error">Unable to update list</string>
     <string name="screen.empty.description">No meteors were found :(\nYay earth!</string>
     <string name="screen.error.description">There was a problem loading meteors. Apocalypse pending.</string>
 

@@ -26,6 +26,8 @@ public interface MeteorFinderContract {
 
         void showEmpty();
 
+        void showToast(Integer message);
+
         void startActivityWithTransition(Intent intent, ScreenTransition screenTransition);
     }
 

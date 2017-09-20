@@ -7,6 +7,7 @@ import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.widget.Toast;
 import android.widget.ViewAnimator;
 
 import com.oddhov.meteorfinder.MeteorFinderApp;
@@ -44,6 +45,8 @@ public class MeteorFinderActivity extends AppCompatActivity implements MeteorFin
     SwipeRefreshLayout mSwipeRefreshLayout;
     @BindView(R.id.recyclerView)
     RecyclerView mRecyclerView;
+
+    private Toast mToast;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -108,6 +111,15 @@ public class MeteorFinderActivity extends AppCompatActivity implements MeteorFin
     public void showEmpty() {
         mViewAnimator.setDisplayedChild(POSITION_EMPTY);
         mSwipeRefreshLayout.setRefreshing(false);
+    }
+
+    @Override
+    public void showToast(Integer message) {
+        if (mToast != null) {
+            mToast.cancel();
+        }
+        mToast = Toast.makeText(this, message, Toast.LENGTH_SHORT);
+        mToast.show();
     }
 
     @Override

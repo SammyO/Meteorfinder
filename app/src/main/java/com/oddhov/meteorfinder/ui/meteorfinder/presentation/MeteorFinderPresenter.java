@@ -2,6 +2,7 @@ package com.oddhov.meteorfinder.ui.meteorfinder.presentation;
 
 import android.content.Intent;
 
+import com.oddhov.meteorfinder.R;
 import com.oddhov.meteorfinder.data.DataSources;
 import com.oddhov.meteorfinder.ui.meteor_detail.view.MeteorDetailActivity;
 import com.oddhov.meteorfinder.ui.meteor_detail.view.MeteorItemOnClickListener;
@@ -38,10 +39,17 @@ public class MeteorFinderPresenter implements MeteorFinderContract.Presenter<Met
 
         if (mDataSources.hasLocalData()) {
             showContent();
+            mDataSources.getDataFromServer()
+                    .subscribe(this::showContent,
+                            e -> handleUpdateDataError()
+                    );
         } else {
             mView.showLoading();
+            mDataSources.getDataFromServer()
+                    .subscribe(this::showContent,
+                            e -> handleGetDataError()
+                    );
         }
-        updateData();
     }
 
     @Override
@@ -76,6 +84,10 @@ public class MeteorFinderPresenter implements MeteorFinderContract.Presenter<Met
     private void showContent() {
         mMeteorAdapter.setData(mDataSources.getAllMeteors());
         mView.showContent();
+    }
+
+    private void handleUpdateDataError() {
+        mView.showToast(R.string.toast_update_data_error);
     }
 
     private void handleGetDataError() {
