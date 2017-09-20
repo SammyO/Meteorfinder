@@ -7,5 +7,7 @@ import io.reactivex.Completable;
  */
 
 public interface NetworkDataSource {
-    Completable getData();
+    Completable getAllMeteors();
+
+    Completable getAllFallenMeteors();
 }

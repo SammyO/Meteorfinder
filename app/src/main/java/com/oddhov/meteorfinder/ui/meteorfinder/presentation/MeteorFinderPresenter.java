@@ -41,13 +41,13 @@ public class MeteorFinderPresenter implements MeteorFinderContract.Presenter<Met
 
         if (mDataSources.hasLocalData()) {
             showContent();
-            mDataSources.getDataFromServer()
+            mDataSources.getAllMeteorsFromServer()
                     .subscribe(this::showContent,
                             e -> handleUpdateDataError()
                     );
         } else {
             mView.showLoading();
-            mDataSources.getDataFromServer()
+            mDataSources.getAllMeteorsFromServer()
                     .subscribe(this::showContent,
                             e -> handleGetDataError()
                     );
@@ -77,7 +77,7 @@ public class MeteorFinderPresenter implements MeteorFinderContract.Presenter<Met
 
 
     void updateData() {
-        mDataSources.getDataFromServer()
+        mDataSources.getAllMeteorsFromServer()
                 .subscribe(this::showContent,
                         e -> handleGetDataError()
                 );

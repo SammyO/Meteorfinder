@@ -90,10 +90,10 @@ public class DataSourcesImplTest {
     @Test
     public void getDataFromServerShouldReturnNetworkDataSourceGetDataFromServer() {
         // GIVEN
-        doReturn(Completable.complete()).when(mNetworkDataSource).getData();
+        doReturn(Completable.complete()).when(mNetworkDataSource).getAllMeteors();
 
         // ACTION
-        TestObserver testObserver = mDataSources.getDataFromServer().test();
+        TestObserver testObserver = mDataSources.getAllMeteorsFromServer().test();
 
         // SHOULD
         testObserver.assertNoErrors();

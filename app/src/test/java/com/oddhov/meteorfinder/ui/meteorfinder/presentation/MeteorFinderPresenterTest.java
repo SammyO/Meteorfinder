@@ -76,7 +76,7 @@ public class MeteorFinderPresenterTest extends BaseTestCase {
         doReturn(meteors).when(mDataSources).getAllMeteors();
 
         Completable completable = mock(Completable.class);
-        doReturn(completable).when(mDataSources).getDataFromServer();
+        doReturn(completable).when(mDataSources).getAllMeteorsFromServer();
 
         // ACTION
         mPresenter.initialize();
@@ -86,7 +86,7 @@ public class MeteorFinderPresenterTest extends BaseTestCase {
         verify(mAdapter).setMeteorItemOnClickListener(mPresenter);
         verify(mAdapter).setData(meteors);
         verify(mView).showContent();
-        verify(mDataSources).getDataFromServer();
+        verify(mDataSources).getAllMeteorsFromServer();
     }
 
     @Test
@@ -95,7 +95,7 @@ public class MeteorFinderPresenterTest extends BaseTestCase {
         doReturn(false).when(mDataSources).hasLocalData();
 
         Completable completable = mock(Completable.class);
-        doReturn(completable).when(mDataSources).getDataFromServer();
+        doReturn(completable).when(mDataSources).getAllMeteorsFromServer();
 
         // ACTION
         mPresenter.initialize();
@@ -110,13 +110,13 @@ public class MeteorFinderPresenterTest extends BaseTestCase {
     public void onRefreshShouldFetchData() {
         // GIVEN
         Completable completable = mock(Completable.class);
-        doReturn(completable).when(mDataSources).getDataFromServer();
+        doReturn(completable).when(mDataSources).getAllMeteorsFromServer();
 
         // ACTION
         mPresenter.onRefresh();
 
         // SHOULD
-        verify(mDataSources).getDataFromServer();
+        verify(mDataSources).getAllMeteorsFromServer();
     }
 
     @Test
@@ -135,7 +135,7 @@ public class MeteorFinderPresenterTest extends BaseTestCase {
     public void updateDataWithSuccessShouldShowContent() {
         // GIVEN
         Completable completable = Completable.complete();
-        doReturn(completable).when(mDataSources).getDataFromServer();
+        doReturn(completable).when(mDataSources).getAllMeteorsFromServer();
 
         // ACTION
         mPresenter.updateData();
@@ -150,7 +150,7 @@ public class MeteorFinderPresenterTest extends BaseTestCase {
     public void updateDataWithErrorShouldShowContent() {
         // GIVEN
         Completable completable = Completable.error(new Throwable());
-        doReturn(completable).when(mDataSources).getDataFromServer();
+        doReturn(completable).when(mDataSources).getAllMeteorsFromServer();
 
         // ACTION
         mPresenter.updateData();

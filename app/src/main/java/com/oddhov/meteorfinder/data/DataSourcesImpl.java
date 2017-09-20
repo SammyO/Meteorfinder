@@ -39,8 +39,15 @@ public class DataSourcesImpl implements DataSources {
     }
 
     @Override
-    public Completable getDataFromServer() {
-        return mNetworkDataSource.getData()
+    public Completable getAllMeteorsFromServer() {
+        return mNetworkDataSource.getAllMeteors()
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread());
+    }
+
+    @Override
+    public Completable getAllFallenMeteorsFromServer() {
+        return mNetworkDataSource.getAllFallenMeteors()
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread());
     }

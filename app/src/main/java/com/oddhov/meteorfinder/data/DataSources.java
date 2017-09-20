@@ -17,6 +17,7 @@ public interface DataSources {
 
     Meteor getMeteorWithId(String id);
 
-    Completable getDataFromServer();
+    Completable getAllMeteorsFromServer();
 
+    Completable getAllFallenMeteorsFromServer();
 }

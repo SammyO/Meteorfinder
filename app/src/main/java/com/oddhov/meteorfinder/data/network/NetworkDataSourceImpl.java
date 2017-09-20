@@ -23,7 +23,7 @@ public class NetworkDataSourceImpl implements NetworkDataSource {
     }
 
     @Override
-    public Completable getData() {
+    public Completable getAllMeteors() {
         return mApiService.getAllMeteors(
                 QueryUtils.getEncodedWhereQuery(Constants.YEAR, Constants.GREATER_OR_EQUALS,
                         Constants.TIMESTAMP_2011),
@@ -34,4 +34,18 @@ public class NetworkDataSourceImpl implements NetworkDataSource {
                 return Completable.complete();
             });
     }
+
+    public Completable getAllFallenMeteors() {
+        return mApiService.getMeteorsThatFell(
+                QueryUtils.getEncodedWhereQuery(Constants.YEAR, Constants.GREATER_OR_EQUALS,
+                        Constants.TIMESTAMP_2011),
+                Constants.FELL,
+                QueryUtils.getEncodedOrderQuery(Constants.MASS))
+                .flatMapIterable(meteors -> meteors)
+                .flatMapCompletable(meteor -> {
+                    mLocalDataSource.saveMeteor(meteor);
+                    return Completable.complete();
+                });
+    }
 }
+
