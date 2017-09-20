@@ -27,7 +27,7 @@
         </activity>
 
         <activity
-            android:name=".ui.meteor_detail.view.MeteorDetailActivity"
+            android:name=".ui.meteordetail.view.MeteorDetailActivity"
             android:theme="@style/AppTheme.ActionBar" />
 
     </application>

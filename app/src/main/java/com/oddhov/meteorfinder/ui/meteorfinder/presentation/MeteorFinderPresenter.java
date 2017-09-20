@@ -4,8 +4,8 @@ import android.content.Intent;
 
 import com.oddhov.meteorfinder.R;
 import com.oddhov.meteorfinder.data.DataSources;
-import com.oddhov.meteorfinder.ui.meteor_detail.view.MeteorDetailActivity;
-import com.oddhov.meteorfinder.ui.meteor_detail.view.MeteorItemOnClickListener;
+import com.oddhov.meteorfinder.ui.meteordetail.view.MeteorDetailActivity;
+import com.oddhov.meteorfinder.ui.meteordetail.view.MeteorItemOnClickListener;
 import com.oddhov.meteorfinder.ui.meteorfinder.MeteorFinderContract;
 import com.oddhov.meteorfinder.ui.meteorfinder.view.MeteorAdapter;
 import com.oddhov.meteorfinder.utils.Constants;

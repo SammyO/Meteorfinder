@@ -1,9 +1,9 @@
-package com.oddhov.meteorfinder.ui.meteor_detail;
+package com.oddhov.meteorfinder.ui.meteordetail;
 
 import com.oddhov.meteorfinder.di.annotation.ActivityScope;
 import com.oddhov.meteorfinder.di.component.ApplicationComponent;
-import com.oddhov.meteorfinder.ui.meteor_detail.presentation.MeteorDetailModule;
-import com.oddhov.meteorfinder.ui.meteor_detail.view.MeteorDetailActivity;
+import com.oddhov.meteorfinder.ui.meteordetail.presentation.MeteorDetailModule;
+import com.oddhov.meteorfinder.ui.meteordetail.view.MeteorDetailActivity;
 
 import dagger.Component;
 

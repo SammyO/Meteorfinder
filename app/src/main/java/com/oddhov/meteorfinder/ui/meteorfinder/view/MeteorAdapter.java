@@ -7,7 +7,7 @@ import android.view.ViewGroup;
 
 import com.oddhov.meteorfinder.R;
 import com.oddhov.meteorfinder.data.models.Meteor;
-import com.oddhov.meteorfinder.ui.meteor_detail.view.MeteorItemOnClickListener;
+import com.oddhov.meteorfinder.ui.meteordetail.view.MeteorItemOnClickListener;
 import com.oddhov.meteorfinder.utils.DateUtils;
 
 import java.util.ArrayList;
