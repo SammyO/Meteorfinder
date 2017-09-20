@@ -4,7 +4,7 @@ import android.content.Intent;
 import android.support.test.espresso.contrib.RecyclerViewActions;
 import android.support.test.rule.ActivityTestRule;
 
-import com.oddhov.meteorfinder.meteorfinder.view.MeteorFinderActivity;
+import com.oddhov.meteorfinder.ui.meteorfinder.view.MeteorFinderActivity;
 
 import org.junit.Rule;
 import org.junit.Test;

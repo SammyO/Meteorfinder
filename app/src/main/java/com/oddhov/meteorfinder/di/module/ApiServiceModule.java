@@ -3,6 +3,7 @@ package com.oddhov.meteorfinder.di.module;
 import com.google.gson.GsonBuilder;
 import com.oddhov.meteorfinder.BuildConfig;
 import com.oddhov.meteorfinder.data.network.ApiService;
+import com.oddhov.meteorfinder.utils.interceptors.AuthorizationInterceptor;
 
 import java.util.concurrent.TimeUnit;
 
@@ -60,9 +61,11 @@ public class ApiServiceModule {
 
     @Singleton
     @Provides
-    public OkHttpClient providesOkHttpClient(HttpLoggingInterceptor httpLoggingInterceptor) {
+    public OkHttpClient providesOkHttpClient(HttpLoggingInterceptor httpLoggingInterceptor,
+                                             AuthorizationInterceptor authorizationInterceptor) {
         if (BuildConfig.DEBUG) {
             return new OkHttpClient.Builder()
+                    .addInterceptor(authorizationInterceptor)
                     .addInterceptor(httpLoggingInterceptor)
                     .connectTimeout(ApiService.DEFAULT_TIMEOUT, TimeUnit.SECONDS)
                     .build();
@@ -79,5 +82,11 @@ public class ApiServiceModule {
         HttpLoggingInterceptor interceptor = new HttpLoggingInterceptor();
         interceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
         return interceptor;
+    }
+
+    @Provides
+    @Singleton
+    AuthorizationInterceptor provideAuthorizationInterceptor() {
+        return new AuthorizationInterceptor();
     }
 }

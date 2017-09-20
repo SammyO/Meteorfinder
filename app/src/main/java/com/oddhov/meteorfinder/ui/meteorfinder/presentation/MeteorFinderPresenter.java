@@ -1,12 +1,12 @@
-package com.oddhov.meteorfinder.meteorfinder.presentation;
+package com.oddhov.meteorfinder.ui.meteorfinder.presentation;
 
 import android.content.Intent;
 
 import com.oddhov.meteorfinder.data.DataSources;
-import com.oddhov.meteorfinder.meteor_detail.view.MeteorDetailActivity;
-import com.oddhov.meteorfinder.meteor_detail.view.MeteorItemOnClickListener;
-import com.oddhov.meteorfinder.meteorfinder.MeteorFinderContract;
-import com.oddhov.meteorfinder.meteorfinder.view.MeteorAdapter;
+import com.oddhov.meteorfinder.ui.meteor_detail.view.MeteorDetailActivity;
+import com.oddhov.meteorfinder.ui.meteor_detail.view.MeteorItemOnClickListener;
+import com.oddhov.meteorfinder.ui.meteorfinder.MeteorFinderContract;
+import com.oddhov.meteorfinder.ui.meteorfinder.view.MeteorAdapter;
 import com.oddhov.meteorfinder.utils.Constants;
 import com.oddhov.meteorfinder.utils.ScreenTransition;
 
@@ -66,7 +66,7 @@ public class MeteorFinderPresenter implements MeteorFinderContract.Presenter<Met
     }
 
 
-    protected void updateData() {
+    void updateData() {
         mDataSources.getDataFromServer()
                 .subscribe(this::showContent,
                         e -> handleGetDataError()

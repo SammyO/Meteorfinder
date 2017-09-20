@@ -1,4 +1,4 @@
-package com.oddhov.meteorfinder.meteor_detail.view;
+package com.oddhov.meteorfinder.ui.meteor_detail.view;
 
 import android.os.Bundle;
 import android.support.v7.app.ActionBar;
@@ -16,10 +16,10 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.oddhov.meteorfinder.MeteorFinderApp;
 import com.oddhov.meteorfinder.R;
-import com.oddhov.meteorfinder.meteor_detail.DaggerMeteorDetailComponent;
-import com.oddhov.meteorfinder.meteor_detail.MeteorDetailContract;
-import com.oddhov.meteorfinder.meteor_detail.presentation.MeteorDetailModule;
-import com.oddhov.meteorfinder.meteor_detail.presentation.MeteorDetailPresenter;
+import com.oddhov.meteorfinder.ui.meteor_detail.DaggerMeteorDetailComponent;
+import com.oddhov.meteorfinder.ui.meteor_detail.MeteorDetailContract;
+import com.oddhov.meteorfinder.ui.meteor_detail.presentation.MeteorDetailModule;
+import com.oddhov.meteorfinder.ui.meteor_detail.presentation.MeteorDetailPresenter;
 import com.oddhov.meteorfinder.utils.ScreenTransition;
 
 import javax.inject.Inject;

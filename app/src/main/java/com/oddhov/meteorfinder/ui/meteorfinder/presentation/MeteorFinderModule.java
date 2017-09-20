@@ -1,9 +1,8 @@
-package com.oddhov.meteorfinder.meteorfinder.presentation;
+package com.oddhov.meteorfinder.ui.meteorfinder.presentation;
 
 import com.oddhov.meteorfinder.di.annotation.ActivityScope;
-import com.oddhov.meteorfinder.meteorfinder.MeteorFinderContract;
-import com.oddhov.meteorfinder.meteorfinder.view.MeteorAdapter;
-import com.oddhov.meteorfinder.meteorfinder.view.MeteorFinderActivity;
+import com.oddhov.meteorfinder.ui.meteorfinder.MeteorFinderContract;
+import com.oddhov.meteorfinder.ui.meteorfinder.view.MeteorFinderActivity;
 
 import dagger.Module;
 import dagger.Provides;

@@ -1,4 +1,4 @@
-package com.oddhov.meteorfinder.meteor_detail;
+package com.oddhov.meteorfinder.ui.meteor_detail;
 
 import android.content.Intent;
 

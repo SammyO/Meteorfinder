@@ -23,7 +23,6 @@ public interface ApiService {
 
     @GET("y77d-th95.json")
     Observable<List<Meteor>> getMeteors(
-        @Header(HEADER_X_APP_TOKEN) String xAppToken,
         @Query(Constants.WHERE_CLAUSE) String whereQuery,
         @Query(Constants.FALL) String fall,
         @Query(Constants.ORDER_CLAUSE) String orderQuery

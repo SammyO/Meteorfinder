@@ -1,4 +1,4 @@
-package com.oddhov.meteorfinder.meteorfinder.view;
+package com.oddhov.meteorfinder.ui.meteorfinder.view;
 
 import android.content.Context;
 import android.content.Intent;
@@ -11,10 +11,10 @@ import android.widget.ViewAnimator;
 
 import com.oddhov.meteorfinder.MeteorFinderApp;
 import com.oddhov.meteorfinder.R;
-import com.oddhov.meteorfinder.meteorfinder.DaggerMeteorFinderComponent;
-import com.oddhov.meteorfinder.meteorfinder.MeteorFinderContract;
-import com.oddhov.meteorfinder.meteorfinder.presentation.MeteorFinderModule;
-import com.oddhov.meteorfinder.meteorfinder.presentation.MeteorFinderPresenter;
+import com.oddhov.meteorfinder.ui.meteorfinder.DaggerMeteorFinderComponent;
+import com.oddhov.meteorfinder.ui.meteorfinder.MeteorFinderContract;
+import com.oddhov.meteorfinder.ui.meteorfinder.presentation.MeteorFinderModule;
+import com.oddhov.meteorfinder.ui.meteorfinder.presentation.MeteorFinderPresenter;
 import com.oddhov.meteorfinder.utils.ScreenTransition;
 
 import javax.inject.Inject;

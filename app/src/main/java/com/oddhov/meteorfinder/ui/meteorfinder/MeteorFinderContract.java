@@ -1,11 +1,11 @@
-package com.oddhov.meteorfinder.meteorfinder;
+package com.oddhov.meteorfinder.ui.meteorfinder;
 
 import android.content.Context;
 import android.content.Intent;
 
 import com.oddhov.meteorfinder.base.BasePresenter;
 import com.oddhov.meteorfinder.base.BaseView;
-import com.oddhov.meteorfinder.meteorfinder.view.MeteorAdapter;
+import com.oddhov.meteorfinder.ui.meteorfinder.view.MeteorAdapter;
 import com.oddhov.meteorfinder.utils.ScreenTransition;
 
 /**

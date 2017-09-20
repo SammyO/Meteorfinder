@@ -25,7 +25,6 @@ public class NetworkDataSourceImpl implements NetworkDataSource {
     @Override
     public Completable getData() {
         return mApiService.getMeteors(
-                ApiService.X_APP_TOKEN,
                 QueryUtils.getEncodedWhereQuery(Constants.YEAR, Constants.GREATER_OR_EQUALS,
                         Constants.TIMESTAMP_2011),
                 Constants.FELL,

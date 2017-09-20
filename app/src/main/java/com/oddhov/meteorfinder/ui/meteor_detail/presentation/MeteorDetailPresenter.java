@@ -1,4 +1,4 @@
-package com.oddhov.meteorfinder.meteor_detail.presentation;
+package com.oddhov.meteorfinder.ui.meteor_detail.presentation;
 
 import android.content.Intent;
 
@@ -6,7 +6,7 @@ import com.google.android.gms.maps.model.LatLng;
 import com.oddhov.meteorfinder.R;
 import com.oddhov.meteorfinder.data.DataSources;
 import com.oddhov.meteorfinder.data.models.Meteor;
-import com.oddhov.meteorfinder.meteor_detail.MeteorDetailContract;
+import com.oddhov.meteorfinder.ui.meteor_detail.MeteorDetailContract;
 import com.oddhov.meteorfinder.utils.Constants;
 import com.oddhov.meteorfinder.utils.DateUtils;
 import com.oddhov.meteorfinder.utils.LocationUtils;

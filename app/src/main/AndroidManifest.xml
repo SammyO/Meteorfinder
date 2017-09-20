@@ -17,7 +17,7 @@
             android:value="@string/google_maps_key" />
 
         <activity
-            android:name="com.oddhov.meteorfinder.meteorfinder.view.MeteorFinderActivity"
+            android:name=".ui.meteorfinder.view.MeteorFinderActivity"
             android:label="@string/app_name">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
@@ -27,7 +27,7 @@
         </activity>
 
         <activity
-            android:name=".meteor_detail.view.MeteorDetailActivity"
+            android:name=".ui.meteor_detail.view.MeteorDetailActivity"
             android:theme="@style/AppTheme.ActionBar" />
 
     </application>
