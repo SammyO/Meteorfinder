@@ -34,6 +34,8 @@ public class MeteorFinderPresenter implements MeteorFinderContract.Presenter<Met
 
     @Override
     public void initialize() {
+        mView.setScreenTitle(R.string.app_name);
+
         mMeteorAdapter.setMeteorItemOnClickListener(this);
         mView.setAdapter(mMeteorAdapter);
 

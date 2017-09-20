@@ -14,6 +14,8 @@ import com.oddhov.meteorfinder.utils.ScreenTransition;
 
 public interface MeteorFinderContract {
     interface View extends BaseView {
+        void setScreenTitle(Integer title);
+
         Context getContext();
 
         void setAdapter(MeteorAdapter adapter);

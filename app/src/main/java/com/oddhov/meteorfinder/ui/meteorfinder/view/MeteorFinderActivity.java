@@ -79,6 +79,12 @@ public class MeteorFinderActivity extends AppCompatActivity implements MeteorFin
     }
 
     @Override
+    public void setScreenTitle(Integer title) {
+        setTitle(getString(title));
+    }
+
+
+    @Override
     public Context getContext() {
         return this;
     }
