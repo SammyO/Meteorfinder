@@ -22,9 +22,15 @@ public interface ApiService {
     String HEADER_X_APP_TOKEN = "X-App-Token";
 
     @GET("y77d-th95.json")
-    Observable<List<Meteor>> getMeteors(
+    Observable<List<Meteor>> getMeteorsThatFell(
         @Query(Constants.WHERE_CLAUSE) String whereQuery,
         @Query(Constants.FALL) String fall,
         @Query(Constants.ORDER_CLAUSE) String orderQuery
+    );
+
+    @GET("y77d-th95.json")
+    Observable<List<Meteor>> getAllMeteors(
+            @Query(Constants.WHERE_CLAUSE) String whereQuery,
+            @Query(Constants.ORDER_CLAUSE) String orderQuery
     );
 }

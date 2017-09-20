@@ -24,10 +24,9 @@ public class NetworkDataSourceImpl implements NetworkDataSource {
 
     @Override
     public Completable getData() {
-        return mApiService.getMeteors(
+        return mApiService.getAllMeteors(
                 QueryUtils.getEncodedWhereQuery(Constants.YEAR, Constants.GREATER_OR_EQUALS,
                         Constants.TIMESTAMP_2011),
-                Constants.FELL,
                 QueryUtils.getEncodedOrderQuery(Constants.MASS))
             .flatMapIterable(meteors -> meteors)
             .flatMapCompletable(meteor -> {
